@@ -35,6 +35,14 @@
       overflow-x: hidden;
     }
 
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
     .loader {
       position: fixed;
       inset: 0;
@@ -71,6 +79,7 @@
       margin-bottom: 26px;
       line-height: 1.7;
     }
+
     .progress {
       height: 10px;
       border-radius: 999px;
@@ -80,11 +89,33 @@
     }
     .progress-bar {
       height: 100%;
-      width: 0;
+      width: 100%;
+      transform-origin: left center;
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      animation: fill 2.2s ease forwards;
     }
-    @keyframes fill { to { width: 100%; } }
+
+    .progress-bar-main {
+      width: 0;
+      animation: fillMain 2.2s ease forwards;
+    }
+
+    .progress-bar-demo {
+      width: 0;
+    }
+
+    .progress-bar-demo.animate {
+      animation: fillDemo 2.2s ease forwards;
+    }
+
+    @keyframes fillMain {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes fillDemo {
+      from { width: 0; }
+      to { width: 100%; }
+    }
 
     .topbar {
       position: sticky;
@@ -130,11 +161,18 @@
       background: rgba(255,255,255,0.02);
       transition: .25s ease;
       font-size: .95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
-    .nav a:hover, .ghost:hover { transform: translateY(-1px); background: rgba(255,255,255,.05); }
+    .nav a:hover, .ghost:hover, .cta:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.05);
+    }
     .cta {
       background: linear-gradient(135deg, rgba(113,167,255,.18), rgba(126,108,255,.18));
       border-color: rgba(113,167,255,.28);
+      cursor: pointer;
     }
 
     .container {
@@ -189,11 +227,6 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
     .summary-card {
       padding: 22px;
     }
@@ -215,8 +248,15 @@
       background: rgba(255,255,255,.03);
       border: 1px solid rgba(255,255,255,.04);
     }
-    .stat-label { color: var(--muted); font-size: .86rem; margin-bottom: 8px; }
-    .stat-value { font-size: 1.55rem; font-weight: 800; }
+    .stat-label {
+      color: var(--muted);
+      font-size: .86rem;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 1.55rem;
+      font-weight: 800;
+    }
 
     .section {
       padding: 18px 0 10px;
@@ -232,7 +272,11 @@
       font-size: clamp(1.7rem, 3vw, 2.5rem);
       margin: 0 0 8px;
     }
-    .section p { color: var(--muted); margin: 0; line-height: 1.7; }
+    .section p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.7;
+    }
 
     .stack {
       display: grid;
@@ -305,7 +349,9 @@
       background: rgba(255,255,255,.03);
       transition: .2s ease;
     }
-    .project-links a:hover { background: rgba(255,255,255,.06); }
+    .project-links a:hover {
+      background: rgba(255,255,255,.06);
+    }
     .project-panel {
       display: grid;
       gap: 12px;
@@ -328,7 +374,10 @@
       margin: 0;
       font-size: .95rem;
     }
-    .mini-card ul { margin: 0; padding-left: 18px; }
+    .mini-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
 
     .two-col {
       display: grid;
@@ -343,9 +392,18 @@
       padding: 14px 0;
       border-bottom: 1px solid rgba(255,255,255,.06);
     }
-    .timeline-item:last-child { border-bottom: 0; padding-bottom: 0; }
-    .timeline-item b { display: block; margin-bottom: 6px; }
-    .timeline-item span { color: var(--muted); line-height: 1.7; }
+    .timeline-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .timeline-item b {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .timeline-item span {
+      color: var(--muted);
+      line-height: 1.7;
+    }
 
     .contact-grid {
       display: grid;
@@ -357,8 +415,46 @@
       border: 1px solid rgba(255,255,255,.06);
       background: rgba(255,255,255,.03);
     }
-    .contact-row small { display: block; color: var(--muted); margin-bottom: 6px; }
-    .contact-row a, .contact-row span { color: var(--text); text-decoration: none; }
+    .contact-row small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .contact-row a, .contact-row span {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .demo-card {
+      display: block;
+      padding: 24px;
+    }
+    .demo-launch,
+    .demo-loader {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .demo-loader {
+      display: none;
+    }
+    .demo-frame-wrap {
+      display: none;
+      margin-top: 10px;
+    }
+    .demo-frame {
+      width: 100%;
+      height: 900px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: #08111f;
+    }
+    .demo-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
 
     footer {
       padding: 34px 0 54px;
@@ -367,15 +463,50 @@
     }
 
     @media (max-width: 980px) {
-      .hero, .project-card, .two-col { grid-template-columns: 1fr; }
-      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .hero,
+      .project-card,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .demo-frame {
+        height: 760px;
+      }
     }
+
     @media (max-width: 720px) {
-      .topbar-inner { flex-direction: column; align-items: stretch; }
-      .nav { justify-content: center; }
-      .summary-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 42px; }
-      .hero-card, .summary-card, .project-card, .timeline-card, .contact-card { border-radius: 22px; }
+      .topbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .hero-card,
+      .summary-card,
+      .project-card,
+      .timeline-card,
+      .contact-card {
+        border-radius: 22px;
+      }
+
+      .demo-frame {
+        height: 620px;
+      }
     }
   </style>
 </head>
@@ -384,8 +515,12 @@
     <div class="loader-box">
       <div class="loader-kicker">Chargement du portfolio</div>
       <h1 class="loader-title">Mahdi Ghommam</h1>
-      <div class="loader-subtitle">Ingénieur informatique orienté Data / IA. Portfolio de projets, démonstrations et cas concrets pour alternance.</div>
-      <div class="progress"><div class="progress-bar"></div></div>
+      <div class="loader-subtitle">
+        Ingénieur informatique orienté Data / IA. Portfolio de projets, démonstrations et cas concrets pour alternance.
+      </div>
+      <div class="progress">
+        <div class="progress-bar progress-bar-main"></div>
+      </div>
     </div>
   </div>
 
@@ -396,7 +531,7 @@
         <a href="#projects">Projets</a>
         <a href="#parcours">Parcours</a>
         <a href="#contact">Contact</a>
-        <a class="cta" href="https://github.com/ghommammahdi9" target="_blank">GitHub</a>
+        <a class="cta" href="https://github.com/ghommammahdi9" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
@@ -412,17 +547,29 @@
         </p>
         <div class="hero-actions">
           <a class="cta" href="#projects">Voir les projets</a>
-          <a class="ghost" href="https://github.com/ghommammahdi9/finpulse" target="_blank">Voir FinPulse sur GitHub</a>
+          <a class="ghost" href="https://github.com/ghommammahdi9/finpulse" target="_blank" rel="noopener noreferrer">Voir FinPulse sur GitHub</a>
         </div>
       </article>
 
       <aside class="summary-card">
         <div class="summary-kicker">Snapshot</div>
         <div class="summary-grid">
-          <div class="stat"><div class="stat-label">Spécialité</div><div class="stat-value">Data / IA</div></div>
-          <div class="stat"><div class="stat-label">Formation</div><div class="stat-value">CY Tech</div></div>
-          <div class="stat"><div class="stat-label">Recherche</div><div class="stat-value">Alternance 24 mois</div></div>
-          <div class="stat"><div class="stat-label">Projet phare</div><div class="stat-value">FinPulse</div></div>
+          <div class="stat">
+            <div class="stat-label">Spécialité</div>
+            <div class="stat-value">Data / IA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Formation</div>
+            <div class="stat-value">CY Tech</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Recherche</div>
+            <div class="stat-value">Alternance 24 mois</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Projet phare</div>
+            <div class="stat-value">FinPulse</div>
+          </div>
         </div>
       </aside>
     </section>
@@ -455,7 +602,7 @@
               <span class="chip">pdfplumber</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/ghommammahdi9/finpulse" target="_blank">GitHub</a>
+              <a href="https://github.com/ghommammahdi9/finpulse" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="#contact">Me contacter</a>
             </div>
           </div>
@@ -471,10 +618,13 @@
             </div>
             <div class="mini-card">
               <h4>Difficultés traitées</h4>
-              <p>Libellés marchands bruités, formats hétérogènes, couverture de catégorisation, anomalies explicables et expérience de démonstration crédible.</p>
+              <p>
+                Libellés marchands bruités, formats hétérogènes, couverture de catégorisation, anomalies explicables et expérience de démonstration crédible.
+              </p>
             </div>
           </div>
         </article>
+
         <article class="project-card">
           <div>
             <div class="project-top">
@@ -491,13 +641,15 @@
               <span class="chip">Dashboard</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/ghommammahdi9" target="_blank">GitHub</a>
+              <a href="https://github.com/ghommammahdi9" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
           <div class="project-panel">
             <div class="mini-card">
               <h4>Problèmes attaqués</h4>
-              <p>Normalisation de données bruitées, hétérogénéité des intitulés, fiabilité de collecte et consolidation pour lecture métier.</p>
+              <p>
+                Normalisation de données bruitées, hétérogénéité des intitulés, fiabilité de collecte et consolidation pour lecture métier.
+              </p>
             </div>
           </div>
         </article>
@@ -518,13 +670,15 @@
               <span class="chip">FastAPI</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/ghommammahdi9" target="_blank">GitHub</a>
+              <a href="https://github.com/ghommammahdi9" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
           <div class="project-panel">
             <div class="mini-card">
               <h4>Enjeu principal</h4>
-              <p>Transformer du texte peu structuré en signaux comparables et utiles, avec un pipeline réellement exploitable au-delà du notebook.</p>
+              <p>
+                Transformer du texte peu structuré en signaux comparables et utiles, avec un pipeline réellement exploitable au-delà du notebook.
+              </p>
             </div>
           </div>
         </article>
@@ -570,6 +724,51 @@
       </div>
     </section>
 
+    <section class="section" id="finpulse-live" data-app-url="https://finpulse-eeb.streamlit.app/">
+      <div class="section-head">
+        <div>
+          <h2>Démo live — FinPulse</h2>
+          <p>Une démonstration interactive du projet directement depuis le portfolio.</p>
+        </div>
+      </div>
+
+      <div class="project-card demo-card">
+        <div id="demo-launch" class="demo-launch">
+          <div class="pill">Démo interactive</div>
+          <h3 style="margin:0 0 12px; font-size:2rem;">Lancer FinPulse</h3>
+          <p style="color:var(--muted); max-width:700px; margin:0 auto 22px; line-height:1.8;">
+            Analyse de relevés bancaires, catégorisation, détection d’anomalies, simulation budgétaire et rapport exportable.
+          </p>
+          <div class="demo-actions">
+            <button type="button" class="cta" id="launch-demo-btn">Lancer la démo</button>
+            <a class="ghost" id="finpulse-fullscreen-link" href="https://finpulse-eeb.streamlit.app/" target="_blank" rel="noopener noreferrer">Ouvrir en plein écran</a>
+          </div>
+        </div>
+
+        <div id="demo-loader" class="demo-loader" aria-live="polite">
+          <div class="loader-kicker">Initialisation de FinPulse</div>
+          <h3 style="margin:0 0 10px; font-size:2rem;">Chargement de la démonstration</h3>
+          <p style="color:var(--muted); margin:0 0 20px;">
+            Préparation du pipeline, lecture de l’interface et ouverture de la vue métier.
+          </p>
+          <div class="progress" style="max-width:720px; margin:0 auto;">
+            <div id="demo-progress-bar" class="progress-bar progress-bar-demo"></div>
+          </div>
+        </div>
+
+        <div id="demo-frame-wrap" class="demo-frame-wrap">
+          <iframe
+            id="finpulse-frame"
+            class="demo-frame"
+            src=""
+            title="FinPulse live demo"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="contact">
       <div class="section-head">
         <div>
@@ -586,11 +785,11 @@
           </div>
           <div class="contact-row">
             <small>GitHub</small>
-            <a href="https://github.com/ghommammahdi9" target="_blank">github.com/ghommammahdi9</a>
+            <a href="https://github.com/ghommammahdi9" target="_blank" rel="noopener noreferrer">github.com/ghommammahdi9</a>
           </div>
           <div class="contact-row">
             <small>Projet FinPulse</small>
-            <a href="https://github.com/ghommammahdi9/finpulse" target="_blank">github.com/ghommammahdi9/finpulse</a>
+            <a href="https://github.com/ghommammahdi9/finpulse" target="_blank" rel="noopener noreferrer">github.com/ghommammahdi9/finpulse</a>
           </div>
           <div class="contact-row">
             <small>Objectif</small>
@@ -606,11 +805,59 @@
   </main>
 
   <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hide');
-      }, 2200);
-    });
+    (function () {
+      const loader = document.getElementById("loader");
+      const demoSection = document.getElementById("finpulse-live");
+      const launchBtn = document.getElementById("launch-demo-btn");
+      const demoLaunch = document.getElementById("demo-launch");
+      const demoLoader = document.getElementById("demo-loader");
+      const demoFrameWrap = document.getElementById("demo-frame-wrap");
+      const demoFrame = document.getElementById("finpulse-frame");
+      const demoProgressBar = document.getElementById("demo-progress-bar");
+      const fullscreenLink = document.getElementById("finpulse-fullscreen-link");
+
+      const appUrl = demoSection ? demoSection.dataset.appUrl : "";
+
+      if (fullscreenLink && appUrl) {
+        fullscreenLink.href = appUrl;
+      }
+
+      function launchFinPulse() {
+        if (!demoLaunch || !demoLoader || !demoFrameWrap || !demoFrame || !appUrl) {
+          return;
+        }
+
+        demoLaunch.style.display = "none";
+        demoLoader.style.display = "block";
+
+        if (demoProgressBar) {
+          demoProgressBar.classList.remove("animate");
+          void demoProgressBar.offsetWidth;
+          demoProgressBar.classList.add("animate");
+        }
+
+        setTimeout(() => {
+          demoLoader.style.display = "none";
+          demoFrameWrap.style.display = "block";
+
+          if (!demoFrame.src) {
+            demoFrame.src = appUrl;
+          }
+        }, 2400);
+      }
+
+      if (launchBtn) {
+        launchBtn.addEventListener("click", launchFinPulse);
+      }
+
+      window.addEventListener("load", () => {
+        if (loader) {
+          setTimeout(() => {
+            loader.classList.add("hide");
+          }, 2200);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
