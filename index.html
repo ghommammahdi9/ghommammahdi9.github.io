@@ -16,7 +16,7 @@
       --muted: #9fb0cb;
       --accent: #71a7ff;
       --accent-2: #7e6cff;
-      --shadow: 0 20px 80px rgba(0,0,0,.38);
+      --shadow: 0 20px 80px rgba(0, 0, 0, 0.38);
     }
 
     * { box-sizing: border-box; }
@@ -26,8 +26,8 @@
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-        radial-gradient(circle at 15% 20%, rgba(113,167,255,0.12), transparent 30%),
-        radial-gradient(circle at 85% 10%, rgba(126,108,255,0.12), transparent 28%),
+        radial-gradient(circle at 15% 20%, rgba(113, 167, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(126, 108, 255, 0.12), transparent 28%),
         linear-gradient(180deg, #040b17 0%, #071222 55%, #06101f 100%);
       color: var(--text);
       min-height: 100vh;
@@ -44,7 +44,7 @@
       display: grid;
       place-items: center;
       z-index: 1000;
-      transition: opacity .7s ease, visibility .7s ease;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
     }
 
     .loader.hide {
@@ -62,8 +62,8 @@
     .loader-kicker {
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: .75rem;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
       margin-bottom: 16px;
     }
 
@@ -82,9 +82,9 @@
     .progress {
       height: 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.06);
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .progress-bar {
@@ -98,7 +98,7 @@
     }
 
     .progress-bar-demo.animate {
-      animation: fillDemo 7s linear forwards;
+      animation: fillDemo 6.8s linear forwards;
     }
 
     @keyframes fillMain {
@@ -142,7 +142,7 @@
       height: 12px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 24px rgba(113,167,255,.45);
+      box-shadow: 0 0 24px rgba(113, 167, 255, 0.45);
     }
 
     .nav {
@@ -157,9 +157,9 @@
       padding: 10px 14px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      transition: .25s ease;
-      font-size: .95rem;
+      background: rgba(255, 255, 255, 0.02);
+      transition: 0.25s ease;
+      font-size: 0.95rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -168,12 +168,12 @@
 
     .nav a:hover, .ghost:hover, .cta:hover {
       transform: translateY(-1px);
-      background: rgba(255,255,255,.05);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .cta {
-      background: linear-gradient(135deg, rgba(113,167,255,.18), rgba(126,108,255,.18));
-      border-color: rgba(113,167,255,.28);
+      background: linear-gradient(135deg, rgba(113, 167, 255, 0.18), rgba(126, 108, 255, 0.18));
+      border-color: rgba(113, 167, 255, 0.28);
     }
 
     .container {
@@ -184,7 +184,7 @@
     .hero {
       padding: 72px 0 34px;
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 28px;
       align-items: stretch;
     }
@@ -207,17 +207,17 @@
       gap: 8px;
       padding: 9px 14px;
       border-radius: 999px;
-      background: rgba(113,167,255,.12);
+      background: rgba(113, 167, 255, 0.12);
       color: #cfe0ff;
-      border: 1px solid rgba(113,167,255,.18);
-      font-size: .9rem;
+      border: 1px solid rgba(113, 167, 255, 0.18);
+      font-size: 0.9rem;
       margin-bottom: 18px;
     }
 
     .hero h1 {
       font-size: clamp(2.5rem, 5vw, 4.6rem);
       margin: 0 0 12px;
-      line-height: .96;
+      line-height: 0.96;
     }
 
     .hero p {
@@ -240,9 +240,9 @@
 
     .summary-kicker {
       color: var(--accent);
-      font-size: .8rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: .15em;
+      letter-spacing: 0.15em;
       margin-bottom: 12px;
     }
 
@@ -255,13 +255,13 @@
     .stat {
       padding: 18px;
       border-radius: 20px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.04);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .stat-label {
       color: var(--muted);
-      font-size: .86rem;
+      font-size: 0.86rem;
       margin-bottom: 8px;
     }
 
@@ -302,15 +302,15 @@
     .project-card {
       padding: 24px;
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 24px;
-      transition: transform .25s ease, border-color .25s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease;
       overflow: hidden;
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(113,167,255,.32);
+      border-color: rgba(113, 167, 255, 0.32);
     }
 
     .project-top {
@@ -329,10 +329,10 @@
     .project-badge {
       padding: 8px 12px;
       border-radius: 999px;
-      font-size: .8rem;
-      border: 1px solid rgba(255,255,255,.07);
+      font-size: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.07);
       color: #d8e5ff;
-      background: rgba(255,255,255,.04);
+      background: rgba(255, 255, 255, 0.04);
       white-space: nowrap;
     }
 
@@ -352,10 +352,10 @@
     .chip {
       padding: 8px 12px;
       border-radius: 999px;
-      font-size: .86rem;
-      background: rgba(113,167,255,.09);
+      font-size: 0.86rem;
+      background: rgba(113, 167, 255, 0.09);
       color: #d4e1ff;
-      border: 1px solid rgba(113,167,255,.16);
+      border: 1px solid rgba(113, 167, 255, 0.16);
     }
 
     .project-links {
@@ -370,12 +370,12 @@
       padding: 10px 14px;
       border-radius: 14px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      transition: .2s ease;
+      background: rgba(255, 255, 255, 0.03);
+      transition: 0.2s ease;
     }
 
     .project-links a:hover {
-      background: rgba(255,255,255,.06);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .project-panel {
@@ -385,15 +385,15 @@
     }
 
     .mini-card {
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.04);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       border-radius: 18px;
       padding: 16px;
     }
 
     .mini-card h4 {
       margin: 0 0 8px;
-      font-size: .95rem;
+      font-size: 0.95rem;
       color: #dce8ff;
     }
 
@@ -401,7 +401,7 @@
       color: var(--muted);
       line-height: 1.7;
       margin: 0;
-      font-size: .95rem;
+      font-size: 0.95rem;
     }
 
     .mini-card ul {
@@ -422,7 +422,7 @@
 
     .timeline-item {
       padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .timeline-item:last-child {
@@ -448,8 +448,8 @@
     .contact-row {
       padding: 16px 18px;
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.06);
-      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.03);
     }
 
     .contact-row small {
@@ -486,10 +486,11 @@
       min-height: 760px;
       display: none;
       margin: 0 28px 28px;
-      border-radius: 24px;
+      border-radius: 28px;
       overflow: hidden;
-      background: #071224;
-      border: 1px solid rgba(113,167,255,0.14);
+      background: linear-gradient(180deg, #071224 0%, #09172b 100%);
+      border: 1px solid rgba(113, 167, 255, 0.10);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
     }
 
     .demo-stage.active {
@@ -500,9 +501,9 @@
       position: absolute;
       inset: 0;
       opacity: 0;
-      transition: opacity .5s ease;
+      transition: opacity 0.5s ease;
       z-index: 1;
-      background: #071224;
+      background: linear-gradient(180deg, #071224 0%, #09172b 100%);
     }
 
     .demo-frame-wrap.ready {
@@ -513,7 +514,10 @@
       width: 100%;
       height: 100%;
       border: 0;
+      outline: none;
+      display: block;
       background: #071224;
+      border-radius: 0;
     }
 
     .demo-overlay {
@@ -525,9 +529,9 @@
       justify-content: center;
       padding: 24px;
       background:
-        radial-gradient(350px circle at var(--mx, 50%) var(--my, 50%), rgba(113,167,255,0.16), transparent 45%),
-        linear-gradient(180deg, rgba(4,11,23,0.65), rgba(7,18,34,0.88));
-      transition: opacity .5s ease, visibility .5s ease;
+        radial-gradient(350px circle at var(--mx, 50%) var(--my, 50%), rgba(113, 167, 255, 0.16), transparent 45%),
+        linear-gradient(180deg, rgba(4, 11, 23, 0.65), rgba(7, 18, 34, 0.88));
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
     .demo-overlay.hide {
@@ -540,8 +544,8 @@
       position: absolute;
       inset: -20%;
       background:
-        linear-gradient(90deg, rgba(113,167,255,0.08), transparent 30%, rgba(126,108,255,0.08) 60%, transparent 100%),
-        repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 4px);
+        linear-gradient(90deg, rgba(113, 167, 255, 0.08), transparent 30%, rgba(126, 108, 255, 0.08) 60%, transparent 100%),
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 4px);
       mix-blend-mode: screen;
       opacity: 0.35;
       animation: glitchMove 2s steps(2) infinite;
@@ -562,23 +566,23 @@
       border-radius: 50%;
       pointer-events: none;
       z-index: 3;
-      background: radial-gradient(circle, rgba(113,167,255,0.25) 0%, rgba(126,108,255,0.12) 38%, transparent 70%);
+      background: radial-gradient(circle, rgba(113, 167, 255, 0.25) 0%, rgba(126, 108, 255, 0.12) 38%, transparent 70%);
       filter: blur(6px);
       transform: translate(-50%, -50%);
       left: 50%;
       top: 50%;
-      transition: left .08s linear, top .08s linear;
+      transition: left 0.08s linear, top 0.08s linear;
     }
 
     .demo-status-card {
       position: relative;
       z-index: 4;
       width: min(680px, 92%);
-      background: rgba(4,12,25,0.68);
-      border: 1px solid rgba(113,167,255,0.16);
+      background: rgba(4, 12, 25, 0.68);
+      border: 1px solid rgba(113, 167, 255, 0.16);
       border-radius: 24px;
       padding: 28px;
-      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
       text-align: center;
     }
 
@@ -967,7 +971,7 @@
   </main>
 
   <script>
-    (function () {
+    (() => {
       const APP_URL = "https://finpulse-eeb.streamlit.app/?embed=true";
 
       const loader = document.getElementById("loader");
