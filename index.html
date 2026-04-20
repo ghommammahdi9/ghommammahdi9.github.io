@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahdi Ghommam — Portfolio</title>
+  <style>
+    :root {
+      --bg: #06101f;
+      --bg-soft: #0b1830;
+      --card: rgba(14, 28, 56, 0.88);
+      --card-2: rgba(18, 35, 68, 0.92);
+      --border: rgba(117, 154, 224, 0.16);
+      --text: #f3f6fb;
+      --muted: #9fb0cb;
+      --accent: #71a7ff;
+      --accent-2: #7e6cff;
+      --good: #40d39b;
+      --warn: #ffb454;
+      --danger: #ff6b6b;
+      --shadow: 0 20px 80px rgba(0,0,0,.38);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(113,167,255,0.12), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(126,108,255,0.12), transparent 28%),
+        linear-gradient(180deg, #040b17 0%, #071222 55%, #06101f 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, #030916 0%, #071223 100%);
+      display: grid;
+      place-items: center;
+      z-index: 1000;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+    .loader.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-box {
+      width: min(540px, 88vw);
+      text-align: center;
+      padding: 32px;
+    }
+    .loader-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .75rem;
+      margin-bottom: 16px;
+    }
+    .loader-title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      margin: 0 0 8px;
+      font-weight: 800;
+    }
+    .loader-subtitle {
+      color: var(--muted);
+      margin-bottom: 26px;
+      line-height: 1.7;
+    }
+    .progress {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      animation: fill 2.2s ease forwards;
+    }
+    @keyframes fill { to { width: 100%; } }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 12, 25, 0.62);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 24px rgba(113,167,255,.45);
+    }
+    .nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .nav a, .cta, .ghost {
+      text-decoration: none;
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      transition: .25s ease;
+      font-size: .95rem;
+    }
+    .nav a:hover, .ghost:hover { transform: translateY(-1px); background: rgba(255,255,255,.05); }
+    .cta {
+      background: linear-gradient(135deg, rgba(113,167,255,.18), rgba(126,108,255,.18));
+      border-color: rgba(113,167,255,.28);
+    }
+
+    .container {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 72px 0 34px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+    .hero-card, .summary-card, .project-card, .contact-card, .timeline-card {
+      background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+    .hero-card {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(113,167,255,.12);
+      color: #cfe0ff;
+      border: 1px solid rgba(113,167,255,.18);
+      font-size: .9rem;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      margin: 0 0 12px;
+      line-height: .96;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+      margin: 0 0 26px;
+      max-width: 58ch;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .summary-card {
+      padding: 22px;
+    }
+    .summary-kicker {
+      color: var(--accent);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 12px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.04);
+    }
+    .stat-label { color: var(--muted); font-size: .86rem; margin-bottom: 8px; }
+    .stat-value { font-size: 1.55rem; font-weight: 800; }
+
+    .section {
+      padding: 18px 0 10px;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin: 0 0 8px;
+    }
+    .section p { color: var(--muted); margin: 0; line-height: 1.7; }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .project-card {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 24px;
+      transition: transform .25s ease, border-color .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(113,167,255,.32);
+    }
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .project-title {
+      margin: 0;
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+    }
+    .project-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .8rem;
+      border: 1px solid rgba(255,255,255,.07);
+      color: #d8e5ff;
+      background: rgba(255,255,255,.04);
+      white-space: nowrap;
+    }
+    .project-desc {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0 0 18px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .86rem;
+      background: rgba(113,167,255,.09);
+      color: #d4e1ff;
+      border: 1px solid rgba(113,167,255,.16);
+    }
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .project-links a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      transition: .2s ease;
+    }
+    .project-links a:hover { background: rgba(255,255,255,.06); }
+    .project-panel {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+    .mini-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .mini-card h4 {
+      margin: 0 0 8px;
+      font-size: .95rem;
+      color: #dce8ff;
+    }
+    .mini-card p, .mini-card li {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+      font-size: .95rem;
+    }
+    .mini-card ul { margin: 0; padding-left: 18px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+    .timeline-card, .contact-card {
+      padding: 24px;
+    }
+    .timeline-item {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .timeline-item:last-child { border-bottom: 0; padding-bottom: 0; }
+    .timeline-item b { display: block; margin-bottom: 6px; }
+    .timeline-item span { color: var(--muted); line-height: 1.7; }
+
+    .contact-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .contact-row {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.03);
+    }
+    .contact-row small { display: block; color: var(--muted); margin-bottom: 6px; }
+    .contact-row a, .contact-row span { color: var(--text); text-decoration: none; }
+
+    footer {
+      padding: 34px 0 54px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .project-card, .two-col { grid-template-columns: 1fr; }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .topbar-inner { flex-direction: column; align-items: stretch; }
+      .nav { justify-content: center; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 42px; }
+      .hero-card, .summary-card, .project-card, .timeline-card, .contact-card { border-radius: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="loader-kicker">Chargement du portfolio</div>
+      <h1 class="loader-title">Mahdi Ghommam</h1>
+      <div class="loader-subtitle">Ingénieur informatique orienté Data / IA. Portfolio de projets, démonstrations et cas concrets pour alternance.</div>
+      <div class="progress"><div class="progress-bar"></div></div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-dot"></span> Mahdi Ghommam</div>
+      <nav class="nav">
+        <a href="#projects">Projets</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="https://github.com/ghommammahdi9" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <article class="hero-card">
+        <div class="pill">Portfolio Data / IA · CY Tech · Alternance 24 mois</div>
+        <h1>Je construis des projets utiles, pas juste des démos.</h1>
+        <p>
+          Étudiant en cycle ingénieur informatique à CY Tech, je cherche une alternance en Data ou Intelligence Artificielle.
+          J’aime transformer des problèmes flous en pipelines concrets, mesurables et démontrables.
+        </p>
+        <div class="hero-actions">
+          <a class="cta" href="#projects">Voir les projets</a>
+          <a class="ghost" href="https://github.com/ghommammahdi9/finpulse" target="_blank">Voir FinPulse sur GitHub</a>
+        </div>
+      </article>
+
+      <aside class="summary-card">
+        <div class="summary-kicker">Snapshot</div>
+        <div class="summary-grid">
+          <div class="stat"><div class="stat-label">Spécialité</div><div class="stat-value">Data / IA</div></div>
+          <div class="stat"><div class="stat-label">Formation</div><div class="stat-value">CY Tech</div></div>
+          <div class="stat"><div class="stat-label">Recherche</div><div class="stat-value">Alternance 24 mois</div></div>
+          <div class="stat"><div class="stat-label">Projet phare</div><div class="stat-value">FinPulse</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head">
+        <div>
+          <h2>Projets sélectionnés</h2>
+          <p>Des projets conçus pour montrer la capacité à extraire, structurer, analyser et rendre exploitable de la donnée.</p>
+        </div>
+      </div>
+
+      <div class="stack">
+        <article class="project-card">
+          <div>
+            <div class="project-top">
+              <h3 class="project-title">FinPulse</h3>
+              <div class="project-badge">Projet signature</div>
+            </div>
+            <p class="project-desc">
+              Analyseur intelligent de relevés bancaires. Le projet combine extraction PDF, normalisation des marchands,
+              catégorisation automatique, contrôle qualité, détection d’anomalies, simulation budgétaire et export de rapport.
+            </p>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">SQLite</span>
+              <span class="chip">Streamlit</span>
+              <span class="chip">Plotly</span>
+              <span class="chip">pdfplumber</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ghommammahdi9/finpulse" target="_blank">GitHub</a>
+              <a href="#contact">Me contacter</a>
+            </div>
+          </div>
+          <div class="project-panel">
+            <div class="mini-card">
+              <h4>Ce que ce projet démontre</h4>
+              <ul>
+                <li>ETL depuis des PDFs semi-structurés</li>
+                <li>Règles métier + enrichissement IA optionnel</li>
+                <li>Data quality et normalisation de libellés</li>
+                <li>Restitution orientée usage métier</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h4>Difficultés traitées</h4>
+              <p>Libellés marchands bruités, formats hétérogènes, couverture de catégorisation, anomalies explicables et expérience de démonstration crédible.</p>
+            </div>
+          </div>
+        </article>
+        <article class="project-card">
+          <div>
+            <div class="project-top">
+              <h3 class="project-title">Observatoire des offres</h3>
+              <div class="project-badge">Data pipeline</div>
+            </div>
+            <p class="project-desc">
+              Pipeline d’agrégation d’offres de stage et d’alternance avec nettoyage, stockage, indicateurs et restitution pour aider à suivre les tendances du marché.
+            </p>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">ETL</span>
+              <span class="chip">SQL</span>
+              <span class="chip">Dashboard</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ghommammahdi9" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <div class="project-panel">
+            <div class="mini-card">
+              <h4>Problèmes attaqués</h4>
+              <p>Normalisation de données bruitées, hétérogénéité des intitulés, fiabilité de collecte et consolidation pour lecture métier.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div>
+            <div class="project-top">
+              <h3 class="project-title">Moteur NLP de recommandation</h3>
+              <div class="project-badge">Recherche sémantique</div>
+            </div>
+            <p class="project-desc">
+              Système de recommandation / recherche sémantique d’offres à partir de texte, avec embeddings, similarité et exposition via API.
+            </p>
+            <div class="chips">
+              <span class="chip">NLP</span>
+              <span class="chip">Embeddings</span>
+              <span class="chip">FAISS</span>
+              <span class="chip">FastAPI</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ghommammahdi9" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <div class="project-panel">
+            <div class="mini-card">
+              <h4>Enjeu principal</h4>
+              <p>Transformer du texte peu structuré en signaux comparables et utiles, avec un pipeline réellement exploitable au-delà du notebook.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="parcours">
+      <div class="section-head">
+        <div>
+          <h2>Parcours</h2>
+          <p>Une progression orientée rigueur, résolution de problèmes et applications data utiles.</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <article class="timeline-card">
+          <h3>Formation</h3>
+          <div class="timeline-item">
+            <b>CY Tech — Cycle Ingénieur Informatique</b>
+            <span>Spécialisation informatique avec intérêt fort pour Data, IA et applications orientées métier.</span>
+          </div>
+          <div class="timeline-item">
+            <b>Classe Préparatoire MP — Tunisie</b>
+            <span>Base solide en mathématiques, physique, logique et méthode de travail exigeante.</span>
+          </div>
+        </article>
+
+        <article class="timeline-card">
+          <h3>Compétences</h3>
+          <div class="timeline-item">
+            <b>Langages</b>
+            <span>Python, C, Java, SQL</span>
+          </div>
+          <div class="timeline-item">
+            <b>Data</b>
+            <span>Pandas, SQLite, ETL, visualisation, nettoyage et structuration de données</span>
+          </div>
+          <div class="timeline-item">
+            <b>IA / NLP</b>
+            <span>LLM, embeddings, recherche sémantique, catégorisation assistée</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-head">
+        <div>
+          <h2>Contact</h2>
+          <p>Disponible pour une alternance de 24 mois en Data ou Intelligence Artificielle.</p>
+        </div>
+      </div>
+
+      <article class="contact-card">
+        <div class="contact-grid">
+          <div class="contact-row">
+            <small>Nom</small>
+            <span>Mahdi Ghommam</span>
+          </div>
+          <div class="contact-row">
+            <small>GitHub</small>
+            <a href="https://github.com/ghommammahdi9" target="_blank">github.com/ghommammahdi9</a>
+          </div>
+          <div class="contact-row">
+            <small>Projet FinPulse</small>
+            <a href="https://github.com/ghommammahdi9/finpulse" target="_blank">github.com/ghommammahdi9/finpulse</a>
+          </div>
+          <div class="contact-row">
+            <small>Objectif</small>
+            <span>Alternance 24 mois — Data / IA — secteur finance ou environnements orientés impact métier</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      Portfolio de Mahdi Ghommam · Data / IA · CY Tech
+    </footer>
+  </main>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hide');
+      }, 2200);
+    });
+  </script>
+</body>
+</html>
