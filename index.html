@@ -16,6 +16,8 @@
       --accent: #71a7ff;
       --accent-2: #7e6cff;
       --shadow: 0 20px 80px rgba(0, 0, 0, 0.38);
+      --note-bg: rgba(255,255,255,.035);
+      --note-border: rgba(255,255,255,.06);
     }
 
     * { box-sizing: border-box; }
@@ -480,6 +482,18 @@
       margin-top: 8px;
     }
 
+    .demo-inline-note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--note-bg);
+      border: 1px solid var(--note-border);
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: .95rem;
+      max-width: 760px;
+    }
+
     .demo-preview {
       margin: 0 28px 28px;
       border-radius: 28px;
@@ -746,7 +760,7 @@
   <div class="launch-loader" id="launch-loader">
     <div class="cursor-orb" id="cursor-orb"></div>
     <div class="launch-card">
-      <div class="loader-kicker">Ouverture de FinPulse</div>
+      <div class="loader-kicker" id="launch-kicker">Ouverture de l’application</div>
       <h3 id="launch-status-title">Initialisation de la démonstration</h3>
       <p id="launch-status-text">Bougez votre curseur pour interagir pendant le chargement.</p>
       <div class="progress" style="max-width:680px; margin:0 auto;">
@@ -778,7 +792,7 @@
         </p>
         <div class="hero-actions">
           <a class="cta" href="#projects">Voir les projets</a>
-          <a class="ghost" href="https://github.com/ghommammahdi9/finpulse" target="_blank" rel="noopener noreferrer">Voir FinPulse sur GitHub</a>
+          <a class="ghost" href="https://github.com/ghommammahdi9/marketpulse" target="_blank" rel="noopener noreferrer">Voir MarketPulse sur GitHub</a>
         </div>
       </article>
 
@@ -788,7 +802,7 @@
           <div class="stat"><div class="stat-label">Spécialité</div><div class="stat-value">Data / IA</div></div>
           <div class="stat"><div class="stat-label">Formation</div><div class="stat-value">CY Tech</div></div>
           <div class="stat"><div class="stat-label">Recherche</div><div class="stat-value">Alternance 24 mois</div></div>
-          <div class="stat"><div class="stat-label">Projet phare</div><div class="stat-value">FinPulse</div></div>
+          <div class="stat"><div class="stat-label">Projet phare</div><div class="stat-value">MarketPulse</div></div>
         </div>
       </aside>
     </section>
@@ -805,8 +819,48 @@
         <article class="project-card">
           <div>
             <div class="project-top">
+              <h3 class="project-title">MarketPulse</h3>
+              <div class="project-badge">Projet live</div>
+            </div>
+            <p class="project-desc">
+              Moteur d’interprétation de l’actualité financière en temps réel. Le projet transforme un flux live de titres
+              financiers en briefing marché structuré avec signal principal, signaux secondaires, preuves d’appui et éléments à surveiller.
+            </p>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Streamlit</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">SQLite</span>
+              <span class="chip">Gemini</span>
+              <span class="chip">RSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ghommammahdi9/marketpulse" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="#contact">Me contacter</a>
+            </div>
+          </div>
+          <div class="project-panel">
+            <div class="mini-card">
+              <h4>Ce que ce projet démontre</h4>
+              <ul>
+                <li>Collecte live de flux RSS financiers</li>
+                <li>Nettoyage, déduplication exacte et floue</li>
+                <li>Mapping d’entités et détection de narratifs marché</li>
+                <li>Reranking des preuves et reformulation assistée par LLM</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h4>Difficultés traitées</h4>
+              <p>Flux bruité, titres peu exploitables, doublons entre sources, rattachement aux bonnes entreprises, sélection des preuves réellement pertinentes et restitution claire pour un lecteur non expert.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div>
+            <div class="project-top">
               <h3 class="project-title">FinPulse</h3>
-              <div class="project-badge">Projet signature</div>
+              <div class="project-badge">Projet produit</div>
             </div>
             <p class="project-desc">
               Analyseur intelligent de relevés bancaires. Le projet combine extraction PDF, normalisation des marchands,
@@ -957,6 +1011,10 @@
             <button type="button" class="cta" id="launch-demo-btn">Lancer la démo</button>
             <a class="ghost" id="finpulse-fullscreen-link" href="https://finpulse-eeb.streamlit.app/" target="_blank" rel="noopener noreferrer">Ouvrir directement</a>
           </div>
+
+          <div class="demo-inline-note">
+            Note : la démo peut nécessiter quelques secondes de réveil au premier chargement si l’application Streamlit a été inactive.
+          </div>
         </div>
 
         <div class="demo-preview">
@@ -1010,6 +1068,84 @@
       </div>
     </section>
 
+    <section class="section" id="marketpulse-live">
+      <div class="section-head">
+        <div>
+          <h2>Démo live — MarketPulse</h2>
+          <p>Une démonstration du moteur d’interprétation de l’actualité financière en temps réel.</p>
+        </div>
+      </div>
+
+      <div class="project-card demo-shell">
+        <div class="demo-launch-panel">
+          <div class="pill">Démo interactive</div>
+          <h3 style="margin:0 0 12px; font-size:2rem;">Lancer MarketPulse</h3>
+          <p style="color:var(--muted); max-width:700px; margin:0 0 22px; line-height:1.8;">
+            Prévisualisation du produit puis ouverture de l’application complète dans un nouvel onglet, avec une transition propre pour un recruteur.
+          </p>
+
+          <div class="demo-actions">
+            <button type="button" class="cta" id="launch-marketpulse-btn">Lancer la démo</button>
+            <a class="ghost" id="marketpulse-fullscreen-link" href="https://marketpulse-eeb.streamlit.app/" target="_blank" rel="noopener noreferrer">Ouvrir directement</a>
+          </div>
+
+          <div class="demo-inline-note">
+            Note : la démo peut nécessiter quelques secondes de réveil au premier chargement si l’application Streamlit a été inactive.
+          </div>
+        </div>
+
+        <div class="demo-preview">
+          <div class="demo-preview-grid"></div>
+          <div class="demo-preview-content">
+            <div class="preview-panel">
+              <div class="pill">Aperçu produit</div>
+              <h3>MarketPulse — Briefing marché en temps réel</h3>
+              <p>
+                Collecte live de flux RSS financiers, nettoyage, déduplication exacte et floue, mapping d’entités,
+                sélection des preuves et reformulation assistée par LLM pour produire un briefing marché exploitable.
+              </p>
+
+              <div class="preview-kpis">
+                <div class="preview-card">
+                  <div class="preview-card-label">Flux</div>
+                  <div class="preview-card-value">Live RSS</div>
+                </div>
+                <div class="preview-card">
+                  <div class="preview-card-label">Lecture</div>
+                  <div class="preview-card-value">Signal principal</div>
+                </div>
+                <div class="preview-card">
+                  <div class="preview-card-label">Preuves</div>
+                  <div class="preview-card-value">Rerankées</div>
+                </div>
+                <div class="preview-card">
+                  <div class="preview-card-label">Sortie</div>
+                  <div class="preview-card-value">Briefing produit</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="preview-side">
+              <div class="preview-chart">
+                <div class="bar b2"></div>
+                <div class="bar b4"></div>
+                <div class="bar b1"></div>
+                <div class="bar b3"></div>
+              </div>
+
+              <div class="preview-card preview-note">
+                <h4>Pourquoi ce projet compte</h4>
+                <p>
+                  L’objectif n’était pas de faire un dashboard de plus, mais un produit capable de répondre rapidement à trois questions :
+                  qu’est-ce qui compte, pourquoi cela compte, et que faut-il surveiller ensuite.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="contact">
       <div class="section-head">
         <div>
@@ -1027,6 +1163,10 @@
           <div class="contact-row">
             <small>GitHub</small>
             <a href="https://github.com/ghommammahdi9" target="_blank" rel="noopener noreferrer">github.com/ghommammahdi9</a>
+          </div>
+          <div class="contact-row">
+            <small>Projet MarketPulse</small>
+            <a href="https://github.com/ghommammahdi9/marketpulse" target="_blank" rel="noopener noreferrer">github.com/ghommammahdi9/marketpulse</a>
           </div>
           <div class="contact-row">
             <small>Projet FinPulse</small>
@@ -1047,54 +1187,73 @@
 
   <script>
     (() => {
-      const APP_URL = "https://finpulse-eeb.streamlit.app/";
       const loader = document.getElementById("loader");
-      const launchBtn = document.getElementById("launch-demo-btn");
-      const fullscreenLink = document.getElementById("finpulse-fullscreen-link");
       const launchLoader = document.getElementById("launch-loader");
       const progressBar = document.getElementById("launch-progress-bar");
       const statusTitle = document.getElementById("launch-status-title");
       const statusText = document.getElementById("launch-status-text");
+      const launchKicker = document.getElementById("launch-kicker");
       const orb = document.getElementById("cursor-orb");
 
-      if (fullscreenLink) {
-        fullscreenLink.href = APP_URL;
-      }
+      function bindDemoLaunch(buttonId, linkId, appUrl, appName) {
+        const launchBtn = document.getElementById(buttonId);
+        const fullscreenLink = document.getElementById(linkId);
 
-      function openDemo() {
-        if (!launchLoader) {
-          window.open(APP_URL, "_blank", "noopener,noreferrer");
-          return;
+        if (fullscreenLink) {
+          fullscreenLink.href = appUrl;
         }
 
-        launchLoader.classList.add("active");
+        function openDemo() {
+          if (!launchLoader) {
+            window.open(appUrl, "_blank", "noopener,noreferrer");
+            return;
+          }
 
-        if (progressBar) {
-          progressBar.classList.remove("animate");
-          void progressBar.offsetWidth;
-          progressBar.classList.add("animate");
+          launchLoader.classList.add("active");
+
+          if (launchKicker) launchKicker.textContent = `Ouverture de ${appName}`;
+
+          if (progressBar) {
+            progressBar.classList.remove("animate");
+            void progressBar.offsetWidth;
+            progressBar.classList.add("animate");
+          }
+
+          if (statusTitle) statusTitle.textContent = `Initialisation de ${appName}`;
+          if (statusText) statusText.textContent = "Bougez votre curseur pour interagir pendant le chargement.";
+
+          setTimeout(() => {
+            if (statusTitle) statusTitle.textContent = "Préparation de l’application";
+            if (statusText) statusText.textContent = `Chargement de l’interface et ouverture de ${appName}.`;
+          }, 1400);
+
+          setTimeout(() => {
+            window.open(appUrl, "_blank", "noopener,noreferrer");
+          }, 2200);
+
+          setTimeout(() => {
+            launchLoader.classList.remove("active");
+          }, 2600);
         }
 
-        if (statusTitle) statusTitle.textContent = "Initialisation de la démonstration";
-        if (statusText) statusText.textContent = "Bougez votre curseur pour interagir pendant le chargement.";
-
-        setTimeout(() => {
-          if (statusTitle) statusTitle.textContent = "Préparation de l’application";
-          if (statusText) statusText.textContent = "Chargement de l’interface et ouverture de FinPulse.";
-        }, 1400);
-
-        setTimeout(() => {
-          window.open(APP_URL, "_blank", "noopener,noreferrer");
-        }, 2200);
-
-        setTimeout(() => {
-          launchLoader.classList.remove("active");
-        }, 2600);
+        if (launchBtn) {
+          launchBtn.addEventListener("click", openDemo);
+        }
       }
 
-      if (launchBtn) {
-        launchBtn.addEventListener("click", openDemo);
-      }
+      bindDemoLaunch(
+        "launch-demo-btn",
+        "finpulse-fullscreen-link",
+        "https://finpulse-eeb.streamlit.app/",
+        "FinPulse"
+      );
+
+      bindDemoLaunch(
+        "launch-marketpulse-btn",
+        "marketpulse-fullscreen-link",
+        "https://marketpulse-eeb.streamlit.app/",
+        "MarketPulse"
+      );
 
       if (launchLoader) {
         const setPointer = (clientX, clientY) => {
